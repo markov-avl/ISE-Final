@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="insert_genre_data" author="markov_av">
+        <insert tableName="genre">
+            <column name="name" value="Action"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Adventure"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Fighting"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Misc"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Platform"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Puzzle"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Racing"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Role-Playing"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Shooter"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Simulation"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Sports"/>
+        </insert>
+        <insert tableName="genre">
+            <column name="name" value="Strategy"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

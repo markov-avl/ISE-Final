@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="create_genre_table" author="markov_av">
+        <createTable tableName="genre">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="genre_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_platform_table" author="markov_av">
+        <createTable tableName="platform">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="platform_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_publisher_table" author="markov_av">
+        <createTable tableName="publisher">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="publisher_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_game_table" author="markov_av">
+        <createTable tableName="game">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="game_pk"/>
+            </column>
+            <column name="publisher_id" type="bigint">
+                <constraints references="publisher(id)" foreignKeyName="game_publisher_fk" nullable="false"/>
+            </column>
+            <column name="genre_id" type="bigint">
+                <constraints references="genre(id)" foreignKeyName="game_genre_fk" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_released_game_table" author="markov_av">
+        <createTable tableName="released_game">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="released_game_pk"/>
+            </column>
+            <column name="game_id" type="bigint">
+                <constraints references="game(id)" foreignKeyName="released_game_game_fk" nullable="false"/>
+            </column>
+            <column name="platform_id" type="bigint">
+                <constraints references="platform(id)" foreignKeyName="released_game_platform_fk" nullable="false"/>
+            </column>
+            <column name="year" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_sale_table" author="markov_av">
+        <createTable tableName="sale">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sale_pk"/>
+            </column>
+            <column name="released_game_id" type="bigint">
+                <constraints references="released_game(id)" foreignKeyName="sale_released_game_fk" nullable="false"/>
+            </column>
+            <column name="region" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_of_sales" type="float">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

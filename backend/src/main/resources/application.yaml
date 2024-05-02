@@ -1,0 +1,18 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: videogames
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${DB_URL:jdbc:postgresql://localhost:5432}/${DB_NAME:videogames}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:postgres}
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    drop-first: false
+  liquibase-ext:
+    lock-timeout: PT5M
+  jpa:
+    show-sql: ${JPA_SHOW_SQL:false}

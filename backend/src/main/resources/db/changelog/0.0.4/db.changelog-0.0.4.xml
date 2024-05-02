@@ -1,0 +1,1737 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="insert_publisher_data" author="markov_av">
+        <insert tableName="publisher">
+            <column name="name" value="10TACLE Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="1C Company"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="20th Century Fox Video Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="2D Boy"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="3DO"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="49Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="505 Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="5pb"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="7G//AMES"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="989 Sports"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="989 Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="AQ Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ASC Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ASCII Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ASCII Media Works"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ASK"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Abylight"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Acclaim Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Accolade"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ackkstudios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Acquire"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Activision"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Activision Blizzard"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Activision Value"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Adeline Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Aerosoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Agatsuma Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Agetec"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Aksys Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Alawar Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Alchemist"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Alternative Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Altron"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Alvion"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="American Softworks"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Angel Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Answer Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Aqua Plus"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Aques"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Arc System Works"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Arena Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Aria"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Arika"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ArtDink"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Aruze Corp"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ascaron Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ascaron Entertainment GmbH"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Asgard"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Asmik Ace Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Asmik Corp"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Aspyr"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Astragon"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Asylum Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Atari"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Athena"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Atlus"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Avalon Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Avanquest"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Avanquest Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Axela"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="BAM! Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="BMG Interactive Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="BPS"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Banpresto"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Benesse"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Berkeley"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Bethesda Softworks"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Big Ben Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Big Fish Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Bigben Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Black Bean Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Black Label Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Blast! Entertainment Ltd"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Blue Byte"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Bohemia Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Bomb"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Boost On"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Brash Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Broccoli"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="BushiRoad"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="CBS Electronics"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="CCP"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="CDV Software Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="CPG Products"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="CTO SpA"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Capcom"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Cave"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ChunSoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="City Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Cloud Imperium Games Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Coconuts Japan"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Codemasters"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Codemasters Online"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="CokeM Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Coleco"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Comfort"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Commseed"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Compile"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Compile Heart"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Conspiracy Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Core Design Ltd."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Crave Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Creative Core"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Crimson Cow"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Crystal Dynamics"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Culture Brain"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Culture Publishers"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="CyberFront"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Cygames"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="D3Publisher"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="DHM Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="DSI Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="DTP Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Daedalic"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Daedalic Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Daito"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Data Age"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Data Design Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Data East"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Datam Polystar"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Deep Silver"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Destination Software, Inc"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Destineer"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Detn8 Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Devolver Digital"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="DigiCube"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Disney Interactive Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Dorart"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="DreamCatcher Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="DreamWorks Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Dusenberry Martin Racing"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="EA Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="EON Digital Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ESP"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Easy Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ecole"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Edia"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Eidos Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Electronic Arts"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Electronic Arts Victor"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Elf"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Elite"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Empire Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Encore"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Enix Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Enjoy Gaming ltd."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Enterbrain"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Epic Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Epoch"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ertain"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Essential Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Evolution Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Evolved Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Excalibur Publishing"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Experience Inc."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Extreme Entertainment Group"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Falcom Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Fields"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Flashpoint Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Flight-Plan"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Focus Home Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Focus Multimedia"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Foreign Media Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Fortyfive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Fox Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="From Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="FuRyu"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="FuRyu Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Fuji"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="FunSoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Funbox Media"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Funcom"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Funsta"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="G.Rev"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="GN Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="GOA"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="GSP"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="GT Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gaga"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gainax Network Systems"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gakken"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Game Arts"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Game Factory"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Game Life"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="GameMill Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="GameTek"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gamebridge"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gamecock"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gameloft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gathering of Developers"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="General Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Genki"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Genterprise"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ghostlight"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Giga"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Giza10"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Glams"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Global A Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Global Star"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gotham Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Graffiti"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Grand Prix Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Graphsim Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gremlin Interactive Ltd"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Griffin International"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Groove Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="GungHo"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Gust"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="HAL Laboratory"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="HMH Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hackberry"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hamster Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Happinet"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Harmonix Music Systems"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hasbro Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Havas Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Headup Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hearty Robin"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hect"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hello Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Her Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hip Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Home Entertainment Suppliers"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hudson Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Hudson Soft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Human Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="HuneX"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="IE Institute"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ITT Family Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Iceberg Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Idea Factory"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Idea Factory International"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ignition Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Illusion Softworks"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Imadio"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Image Epoch"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Imageworks"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Imagic"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Imagineer"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Imax"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Indie Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Infogrames"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Insomniac Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Interchannel"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Interchannel-Holon"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Intergrow"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Interplay"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Interplay Productions"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Interworks Unlimited, Inc."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Inti Creates"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Introversion Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Irem Software Engineering"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ivolgamus"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="JVC"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Jack of All Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Jaleco"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Jester Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="JoWood Productions"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Jorudan"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Just Flight"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="KID"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="KSS"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kadokawa Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kadokawa Shoten"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kaga Create"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kalypso Media"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kamui"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kando Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Karin Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kemco"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kids Station"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="King Records"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Knowledge Adventure"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Koch Media"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kokopeli Digital Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Konami Digital Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Kool Kizz"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="LEGO Media"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="LSP Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Laguna"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Legacy Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Level 5"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Lexicon Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Licensed 4U"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Lighthouse Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Liquid Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Little Orbit"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Locus"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="LucasArts"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="MC2 Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="MLB.com"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="MTO"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="MTV Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mad Catz"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Magical Company"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Magix"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Majesco Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mamba Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Marvel Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Marvelous Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Marvelous Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Marvelous Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Masque Publishing"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mastertronic"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mastiff"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mattel Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Max Five"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Maximum Family Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Maxis"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Media Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Media Factory"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Media Rings"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Media Works"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="MediaQuest"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Men-A-Vision"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mentor Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mercury Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Merscom LLC"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Metro 3D"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Michaelsoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Micro Cabin"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Microids"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Microprose"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Microsoft Game Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Midas Interactive Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Midway Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Milestone"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Milestone S.r.l"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Milestone S.r.l."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Minato Station"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mindscape"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mirai Shounen"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Misawa"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mitsui"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mojang"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Monte Christo Multimedia"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Moss"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mud Duck Productions"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mumbo Jumbo"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mycom"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Myelin Media"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Mystique"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="NCS"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="NCSoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="NDA Productions"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="NEC"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="NEC Interchannel"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Namco Bandai Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Natsume"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Navarre Corp"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Naxat Soft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Neko Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="NetRevo"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="New"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="New World Computing"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="NewKidCo"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nexon"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nichibutsu"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nihon Falcom Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nintendo"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nippon Amuse"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nippon Columbia"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nippon Ichi Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nippon Telenet"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nitroplus"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nobilis"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nordcurrent"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Nordic Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="NovaLogic"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Number None"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="O-Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="O3 Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ocean"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Office Create"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="On Demand"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ongakukan"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Origin Systems"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Otomate"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Oxygen Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="P2 Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="PM Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="PQube"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Pacific Century Cyber Works"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Pack In Soft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Pack-In-Video"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Palcom"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Panther Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Paon"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Paon Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Paradox Development"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Paradox Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Parker Bros."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Performance Designed Products"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Phantagram"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Phantom EFX"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Phenomedia"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Phoenix Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Piacci"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Pinnacle"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Pioneer LDC"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Play It"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="PlayV"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Playlogic Game Factory"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Playmates"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Playmore"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Plenty"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Pony Canyon"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="PopCap Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="PopTop Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Popcorn Arcade"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Pow"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Princess Soft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Prototype"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Psygnosis"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Quelle"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Quest"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Quinrose"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Quintet"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="RED Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="RTL"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Rage Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Rain Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Rebellion"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Rebellion Developments"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Red Orb"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Red Storm Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="RedOctane"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Reef Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Revolution (Japan)"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Revolution Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Rising Star Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Riverhillsoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Rocket Company"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Rondomedia"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Russel"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="SCS Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="SCi"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="SNK"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="SNK Playmore"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="SPS"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="SSI"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sammy Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Saurus"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Scholastic Inc."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Screenlife"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sega"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Seta Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Seventh Chord"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Shogakukan"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Simon &amp; Schuster Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Slightly Mad Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Slitherine Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Societa"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sold Out"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sonnet"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sony Computer Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sony Computer Entertainment America"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sony Computer Entertainment Europe"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sony Music Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sony Online Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="SouthPeak Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Spike"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Square"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Square EA"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Square Enix"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="SquareSoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Stainless Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Starfish"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Starpath Corp."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sting"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Storm City Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Strategy First"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Success"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Summitsoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sunflowers"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sunrise Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sunsoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Sweets"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Swing! Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Syscom"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="System 3"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="System 3 Arcade Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="System Soft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="T&amp;E Soft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="TDK Core"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="TDK Mediactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="TGL"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="THQ"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="TOHO"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="TYO"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Taito"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Takara"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Takara Tomy"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Take-Two Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Takuyo"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="TalonSoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Team17 Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="TechnoSoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Technos Japan Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tecmo Koei"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Telegames"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Telltale Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Telstar"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tetris Online"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="The Adventure Company"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="The Learning Company"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tigervision"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Time Warner Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Titus"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tivola"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tommo"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tomy Corporation"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="TopWare Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Touchstone"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tradewest"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Trion Worlds"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tripwire Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tru Blu Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Tryfirst"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Type-Moon"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="U.S. Gold"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="UEP Systems"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="UFO Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="UIG Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ubisoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Ubisoft Annecy"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Universal Gamex"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Universal Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Unknown"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Valcon Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="ValuSoft"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Valve"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Valve Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Vap"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Vatical Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Vic Tokai"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Victor Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Video System"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Views"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Vir2L Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Virgin Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Virtual Play Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Visco"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Vivendi Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Wanadoo"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Warashi"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Wargaming.net"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Warner Bros. Interactive Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Warp"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="WayForward Technologies"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Westwood Studios"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="White Park Bay Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Wizard Video Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="XS Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Xicat Interactive"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Xing Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Xplosiv"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Xseed Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Yacht Club Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Yamasa Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Yeti"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Yuke's"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Yumedia"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Zenrin"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Zoo Digital Publishing"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Zoo Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="Zushi Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="bitComposer Games"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="dramatic create"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="fonfun"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="iWin"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="id Software"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="imageepoch Inc."/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="inXile Entertainment"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="mixi, Inc"/>
+        </insert>
+        <insert tableName="publisher">
+            <column name="name" value="responDESIGN"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

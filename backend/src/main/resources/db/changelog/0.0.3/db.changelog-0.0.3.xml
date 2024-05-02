@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="insert_platform_data" author="markov_av">
+        <insert tableName="platform">
+            <column name="name" value="2600"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="3DO"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="3DS"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="DC"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="DS"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="GB"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="GBA"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="GC"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="GEN"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="GG"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="N64"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="NES"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="NG"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="PC"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="PCFX"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="PS"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="PS2"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="PS3"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="PS4"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="PSP"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="PSV"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="SAT"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="SCD"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="SNES"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="TG16"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="WS"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="Wii"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="WiiU"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="X360"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="XB"/>
+        </insert>
+        <insert tableName="platform">
+            <column name="name" value="XOne"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
