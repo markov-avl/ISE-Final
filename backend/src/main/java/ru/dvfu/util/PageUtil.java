@@ -3,7 +3,7 @@ package ru.dvfu.util;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.lang.Nullable;
-import ru.dvfu.dto.page.PageParamsDto;
+import ru.dvfu.dto.params.PageParamsDto;
 
 @UtilityClass
 public class PageUtil {
@@ -12,7 +12,7 @@ public class PageUtil {
 
     public final int MIN_SIZE = 1;
 
-    public final int MAX_SIZE = 50;
+    public final int MAX_SIZE = 1000;
 
     public final String PAGE_ERROR = "Номер страницы не может быть меньше " + MIN_PAGE;
 

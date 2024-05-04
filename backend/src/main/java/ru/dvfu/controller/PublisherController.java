@@ -11,37 +11,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dvfu.dto.PageDto;
-import ru.dvfu.dto.PlatformDto;
+import ru.dvfu.dto.PublisherDto;
 import ru.dvfu.dto.params.PageParamsDto;
 import ru.dvfu.dto.params.SortParamsDto;
-import ru.dvfu.entity.Platform;
-import ru.dvfu.mapper.PlatformMapper;
-import ru.dvfu.service.PlatformService;
+import ru.dvfu.entity.Publisher;
+import ru.dvfu.mapper.PublisherMapper;
+import ru.dvfu.service.PublisherService;
 import ru.dvfu.util.PageUtil;
 import ru.dvfu.util.SortUtil;
 
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/platforms")
-public class PlatformController {
+@RequestMapping("/publishers")
+public class PublisherController {
 
-    private final PlatformService platformService;
+    private final PublisherService publisherService;
 
-    private final PlatformMapper platformMapper;
+    private final PublisherMapper publisherMapper;
 
     @GetMapping
-    public ResponseEntity<PageDto<PlatformDto>> getAll(
+    public ResponseEntity<PageDto<PublisherDto>> getAll(
             @Valid PageParamsDto pageParamsDto,
             @Valid SortParamsDto sortParamsDto
     ) {
         PageRequest pageRequest = PageUtil.request(pageParamsDto);
         Sort sort = SortUtil.request(sortParamsDto);
 
-        Page<Platform> platforms = platformService.getAll(pageRequest.withSort(sort));
-        PageDto<PlatformDto> platformsDto = platformMapper.toPageDto(platforms);
+        Page<Publisher> publishers = publisherService.getAll(pageRequest.withSort(sort));
+        PageDto<PublisherDto> publishersDto = publisherMapper.toPageDto(publishers);
 
-        return ResponseEntity.ok(platformsDto);
+        return ResponseEntity.ok(publishersDto);
     }
 
 }

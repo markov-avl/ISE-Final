@@ -1,4 +1,4 @@
-package ru.dvfu.dto.page;
+package ru.dvfu.dto.params;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -15,10 +15,10 @@ import ru.dvfu.util.SortUtil;
 @Schema(description = "Сортировка")
 public class SortParamsDto {
 
-    @Schema(description = "Направление сортировки", example = "true", nullable = true)
-    private Boolean ascending = SortUtil.DEFAULT_DIRECTION.equals(Sort.Direction.ASC);
+    @Schema(description = "Направление сортировки", example = "ASC", nullable = true)
+    private Sort.Direction sortDirection = SortUtil.DEFAULT_DIRECTION;
 
-    @Schema(description = "Поле, по которому проходит сортировка", example = SortUtil.DEFAULT_SORT_BY, nullable = true)
+    @Schema(description = "Поле, по которому сортируются данные", example = SortUtil.DEFAULT_SORT_BY, nullable = true)
     private String sortBy = SortUtil.DEFAULT_SORT_BY;
 
 }

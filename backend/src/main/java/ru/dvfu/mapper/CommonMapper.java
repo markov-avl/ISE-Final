@@ -2,7 +2,7 @@ package ru.dvfu.mapper;
 
 import org.mapstruct.Mapping;
 import org.springframework.data.domain.Page;
-import ru.dvfu.dto.page.PageDto;
+import ru.dvfu.dto.PageDto;
 import ru.dvfu.entity.BaseEntity;
 
 import java.util.List;
