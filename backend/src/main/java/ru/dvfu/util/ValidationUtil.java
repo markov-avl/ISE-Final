@@ -1,19 +1,14 @@
 package ru.dvfu.util;
 
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Path;
-import jakarta.validation.Validator;
 import lombok.experimental.UtilityClass;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import ru.dvfu.dto.exception.InvalidRequestComponentDto;
 
-import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @UtilityClass
 public class ValidationUtil {
@@ -41,16 +36,6 @@ public class ValidationUtil {
 
     public String extractFieldName(ObjectError error) {
         return ((FieldError) error).getField();
-    }
-
-    public <S> void validateUpdate(Validator validator, S saveDto, Set<String> properties) {
-        Set<ConstraintViolation<S>> violations = properties.stream()
-                .map(p -> validator.validateProperty(saveDto, p))
-                .flatMap(Collection::stream)
-                .collect(Collectors.toSet());
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
-        }
     }
 
     public String finalizeErrorMessage(String errorMessage) {

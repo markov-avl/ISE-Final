@@ -1,6 +1,8 @@
 package ru.dvfu.util;
 
 import lombok.experimental.UtilityClass;
+import ru.dvfu.dto.params.MultiFilterParamsDto;
+import ru.dvfu.model.Filter;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +12,13 @@ public class FilterUtil {
 
     public final List<String> DEFAULT_VALUES = Collections.emptyList();
 
-    public final String DEFAULT_FILTER_BY = "";
+    public Filter request(MultiFilterParamsDto multiFilterParamsDto) {
+        return Filter.of(
+                multiFilterParamsDto.getPublishers(),
+                multiFilterParamsDto.getPlatforms(),
+                multiFilterParamsDto.getGenres(),
+                multiFilterParamsDto.getYears()
+        );
+    }
 
 }

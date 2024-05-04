@@ -10,6 +10,10 @@ public class FailedToSortException extends UnprocessableEntity {
         super(MESSAGE);
     }
 
+    public FailedToSortException(String message) {
+        super(message);
+    }
+
     public FailedToSortException(Throwable cause) {
         super(MESSAGE, cause);
     }
