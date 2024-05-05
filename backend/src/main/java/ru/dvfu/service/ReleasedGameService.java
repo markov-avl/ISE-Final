@@ -6,30 +6,30 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.stereotype.Service;
-import ru.dvfu.entity.Platform;
+import ru.dvfu.entity.ReleasedGame;
 import ru.dvfu.exception.FailedToSortException;
-import ru.dvfu.repository.PlatformRepository;
+import ru.dvfu.repository.ReleasedGameRepository;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class PlatformService {
+public class ReleasedGameService {
 
-    private final PlatformRepository platformRepository;
+    private final ReleasedGameRepository releasedGameRepository;
 
-    public Platform getById(Long id) {
+    public ReleasedGame getById(Long id) {
         return findById(id).orElseThrow();
     }
 
-    public Optional<Platform> findById(Long id) {
-        return platformRepository.findById(id);
+    public Optional<ReleasedGame> findById(Long id) {
+        return releasedGameRepository.findById(id);
     }
 
     @Cacheable
-    public Page<Platform> getAll(Pageable page) {
+    public Page<Integer> getYears(Pageable page) {
         try {
-            return platformRepository.findAll(page);
+            return releasedGameRepository.findDistinctYearsNotNull(page);
         } catch (PropertyReferenceException exception) {
             throw new FailedToSortException(exception);
         }

@@ -1,6 +1,7 @@
 package ru.dvfu.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mapping.PropertyReferenceException;
@@ -25,6 +26,7 @@ public class GenreService {
         return genreRepository.findById(id);
     }
 
+    @Cacheable
     public Page<Genre> getAll(Pageable page) {
         try {
             return genreRepository.findAll(page);

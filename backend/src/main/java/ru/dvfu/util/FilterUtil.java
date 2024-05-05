@@ -17,7 +17,8 @@ public class FilterUtil {
                 multiFilterParamsDto.getPublishers(),
                 multiFilterParamsDto.getPlatforms(),
                 multiFilterParamsDto.getGenres(),
-                multiFilterParamsDto.getYears()
+                multiFilterParamsDto.getYears(),
+                multiFilterParamsDto.getRegions()
         );
     }
 

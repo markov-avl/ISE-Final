@@ -16,16 +16,19 @@ import java.util.List;
 @Schema(description = "Фильтрация по определенным полям")
 public class MultiFilterParamsDto {
 
-    @Schema(description = "Значения фильтра по игровому издателю", example = "Nintendo,Activision", nullable = true)
+    @Schema(description = "Фильтры по игровому издателю", example = "Nintendo,Activision", nullable = true)
     private List<String> publishers = FilterUtil.DEFAULT_VALUES;
 
-    @Schema(description = "Значения фильтра по игровым платформам", example = "XOne,PS3", nullable = true)
+    @Schema(description = "Фильтры по игровым платформам", example = "XOne,PS3", nullable = true)
     private List<String> platforms = FilterUtil.DEFAULT_VALUES;
 
-    @Schema(description = "Значения фильтра по игровых жанрам", example = "Action,Horror", nullable = true)
+    @Schema(description = "Фильтры по игровым жанрам", example = "Action,Horror", nullable = true)
     private List<String> genres = FilterUtil.DEFAULT_VALUES;
 
-    @Schema(description = "Значения фильтра по годам выхода игры", example = "2001,1999", nullable = true)
+    @Schema(description = "Фильтры по годам выхода игры", example = "2001,1999", nullable = true)
     private List<String> years = FilterUtil.DEFAULT_VALUES;
+
+    @Schema(description = "Фильтры по регионам продаж", example = "JP,EU", nullable = true)
+    private List<String> regions = FilterUtil.DEFAULT_VALUES;
 
 }

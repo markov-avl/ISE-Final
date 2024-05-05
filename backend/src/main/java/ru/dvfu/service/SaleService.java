@@ -1,6 +1,7 @@
 package ru.dvfu.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,7 @@ public class SaleService {
         return saleRepository.findById(id);
     }
 
+    @Cacheable
     public Page<Sale> getAll(Pageable page) {
         try {
             return saleRepository.findAll(page);
@@ -48,6 +50,7 @@ public class SaleService {
         }
     }
 
+    @Cacheable
     public Page<Sale> getAll(PageRequest page, Filter filter) {
         Sort.Order[] correctOrders = page.getSort().stream()
                 .map(order -> {
@@ -64,10 +67,12 @@ public class SaleService {
                 filter.getPlatforms().isEmpty(),
                 filter.getGenres().isEmpty(),
                 filter.getYears().isEmpty(),
+                filter.getRegions().isEmpty(),
                 filter.getPublishers(),
                 filter.getPlatforms(),
                 filter.getGenres(),
                 filter.getYears(),
+                filter.getRegions(),
                 page.withSort(correctSort)
         );
     }
