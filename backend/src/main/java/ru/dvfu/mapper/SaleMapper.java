@@ -3,10 +3,12 @@ package ru.dvfu.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.data.domain.Page;
+import ru.dvfu.dto.ChartDataDto;
 import ru.dvfu.dto.PageDto;
 import ru.dvfu.dto.SaleDto;
 import ru.dvfu.dto.SaleExtendedDto;
 import ru.dvfu.entity.Sale;
+import ru.dvfu.model.ChartData;
 
 import java.util.List;
 
@@ -28,5 +30,9 @@ public abstract class SaleMapper implements CommonMapper<Sale, SaleDto> {
     @Mapping(target = "page", expression = "java(page.getNumber() + 1)")
     @Mapping(target = "data", source = "content")
     public abstract PageDto<SaleExtendedDto> toExtendedPageDto(Page<Sale> page);
+
+    @Mapping(target = "page", expression = "java(page.getNumber() + 1)")
+    @Mapping(target = "data", source = "content")
+    public abstract PageDto<ChartDataDto> toChartDataPageDto(Page<ChartData> page);
 
 }
