@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,13 +71,13 @@ public class SaleController {
         return ResponseEntity.ok(salesDto);
     }
 
-    @GetMapping("/chart")
+    @GetMapping("/chart/{groupBy}")
     public ResponseEntity<PageDto<ChartDataDto>> getChart(
+            @PathVariable GroupBy groupBy,
             @Valid PageParamsDto pageParamsDto,
             @Valid MultiFilterParamsDto multiFilterParamsDto,
             @Valid MultiSortParamsDto multiSortParamsDto,
-            @RequestParam(required = false, defaultValue = "SUM") Aggregator aggregator,
-            @RequestParam(required = false, defaultValue = "GENRE") GroupBy groupBy
+            @RequestParam(required = false, defaultValue = "SUM") Aggregator aggregator
     ) {
         PageRequest pageRequest = PageUtil.request(pageParamsDto);
         Filter filter = FilterUtil.request(multiFilterParamsDto);

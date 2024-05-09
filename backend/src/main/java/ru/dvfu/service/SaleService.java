@@ -1,6 +1,5 @@
 package ru.dvfu.service;
 
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -17,6 +16,8 @@ import ru.dvfu.model.ChartData;
 import ru.dvfu.model.Filter;
 import ru.dvfu.repository.SaleRepository;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -37,8 +38,6 @@ public class SaleService {
 
     private final SaleRepository saleRepository;
 
-    private final EntityManager entityManager;
-
     public Sale getById(Long id) {
         return findById(id).orElseThrow();
     }
@@ -47,7 +46,7 @@ public class SaleService {
         return saleRepository.findById(id);
     }
 
-    @Cacheable
+    @Cacheable("getAll")
     public Page<Sale> getAll(Pageable page) {
         try {
             return saleRepository.findAll(page);
@@ -56,18 +55,8 @@ public class SaleService {
         }
     }
 
-    @Cacheable
+    @Cacheable("getAllFiltered")
     public Page<Sale> getAll(PageRequest page, Filter filter) {
-        Sort.Order[] correctOrders = page.getSort().stream()
-                .map(order -> {
-                    if (SORT_MAPPINGS.containsKey(order.getProperty())) {
-                        return order.withProperty(SORT_MAPPINGS.get(order.getProperty()));
-                    }
-                    throw new FailedToSortException("Неизвестное поле для сортировки: " + order.getProperty());
-                })
-                .toArray(Sort.Order[]::new);
-        Sort correctSort = Sort.by(correctOrders);
-
         return saleRepository.findByPublishersAndPlatformsAndGenresAndYears(
                 filter.getPublishers().isEmpty(),
                 filter.getPlatforms().isEmpty(),
@@ -79,23 +68,12 @@ public class SaleService {
                 filter.getGenres(),
                 filter.getYears(),
                 filter.getRegions(),
-                page.withSort(correctSort)
+                correctPageable(page, SORT_MAPPINGS.values())
         );
     }
 
-    @Cacheable
+    @Cacheable("getChart")
     public Page<ChartData> getChart(PageRequest page, Filter filter, Aggregator aggregator, GroupBy groupBy) {
-        Sort.Order[] correctOrders = page.getSort().stream()
-                .filter(order -> order.getProperty().equals("year") || order.getProperty().toUpperCase().equals(groupBy.name()))
-                .map(order -> {
-                    if (SORT_MAPPINGS.containsKey(order.getProperty())) {
-                        return order.withProperty(SORT_MAPPINGS.get(order.getProperty()));
-                    }
-                    throw new FailedToSortException("Неизвестное поле для сортировки: " + order.getProperty());
-                })
-                .toArray(Sort.Order[]::new);
-        Sort correctSort = Sort.by(correctOrders);
-
         if (groupBy.equals(GroupBy.PUBLISHER)) {
             return saleRepository.findByPublishersAndPlatformsAndGenresAndYearsGroupByPublisher(
                     aggregator.name(),
@@ -111,7 +89,7 @@ public class SaleService {
                     filter.getGenres(),
                     filter.getYears(),
                     filter.getRegions(),
-                    page.withSort(correctSort)
+                    correctPageable(page, List.of("year", groupBy.name().toLowerCase()))
             );
         } else if (groupBy.equals(GroupBy.PLATFORM)) {
             return saleRepository.findByPublishersAndPlatformsAndGenresAndYearsGroupByPlatform(
@@ -128,7 +106,7 @@ public class SaleService {
                     filter.getGenres(),
                     filter.getYears(),
                     filter.getRegions(),
-                    page.withSort(correctSort)
+                    correctPageable(page, List.of("year", groupBy.name().toLowerCase()))
             );
         } else {
             return saleRepository.findByPublishersAndPlatformsAndGenresAndYearsGroupByGenre(
@@ -145,9 +123,26 @@ public class SaleService {
                     filter.getGenres(),
                     filter.getYears(),
                     filter.getRegions(),
-                    page.withSort(correctSort)
+                    correctPageable(page, List.of("year", groupBy.name().toLowerCase()))
             );
         }
+    }
+
+    private Pageable correctPageable(PageRequest page, Collection<String> orderBy) {
+        Sort.Order[] correctOrders = page.getSort().stream()
+                .filter(order -> orderBy.contains(order.getProperty().toLowerCase()))
+                .map(order -> {
+                    if (SORT_MAPPINGS.containsKey(order.getProperty())) {
+                        return order.withProperty(SORT_MAPPINGS.get(order.getProperty()));
+                    }
+                    throw new FailedToSortException("Неизвестное поле для сортировки '%s', возможные значения: %s"
+                            .formatted(order.getProperty(), String.join(", ", orderBy))
+                    );
+                })
+                .toArray(Sort.Order[]::new);
+        Sort correctSort = Sort.by(correctOrders);
+
+        return page.withSort(correctSort);
     }
 
 }

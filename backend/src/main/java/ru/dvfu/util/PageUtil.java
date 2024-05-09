@@ -12,7 +12,7 @@ public class PageUtil {
 
     public final int MIN_SIZE = 1;
 
-    public final int MAX_SIZE = Integer.MAX_VALUE;
+    public final int MAX_SIZE = 5000;
 
     public final String PAGE_ERROR = "Номер страницы не может быть меньше " + MIN_PAGE;
 

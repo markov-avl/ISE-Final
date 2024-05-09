@@ -19,13 +19,13 @@ public class MultiFilterParamsDto {
     @Schema(description = "Фильтры по игровому издателю", example = "Nintendo,Activision", nullable = true)
     private List<String> publishers = FilterUtil.DEFAULT_VALUES;
 
-    @Schema(description = "Фильтры по игровым платформам", example = "XOne,PS3", nullable = true)
+    @Schema(description = "Фильтры по игровым платформам", example = "PC,X360,PS3", nullable = true)
     private List<String> platforms = FilterUtil.DEFAULT_VALUES;
 
-    @Schema(description = "Фильтры по игровым жанрам", example = "Action,Horror", nullable = true)
+    @Schema(description = "Фильтры по игровым жанрам", example = "Action,Simulation", nullable = true)
     private List<String> genres = FilterUtil.DEFAULT_VALUES;
 
-    @Schema(description = "Фильтры по годам выхода игры", example = "2001,1999", nullable = true)
+    @Schema(description = "Фильтры по годам выхода игры", example = "2008,2013", nullable = true)
     private List<String> years = FilterUtil.DEFAULT_VALUES;
 
     @Schema(description = "Фильтры по регионам продаж", example = "JP,EU", nullable = true)
