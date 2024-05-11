@@ -2,11 +2,11 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
-    <include file="db/changelog/0.0.1/db.changelog-0.0.1.xml"/>
-    <include file="db/changelog/0.0.2/db.changelog-0.0.2.xml"/>
-    <include file="db/changelog/0.0.3/db.changelog-0.0.3.xml"/>
-    <include file="db/changelog/0.0.4/db.changelog-0.0.4.xml"/>
-    <include file="db/changelog/0.0.5/db.changelog-0.0.5.xml"/>
-    <include file="db/changelog/0.0.6/db.changelog-0.0.6.xml"/>
-    <include file="db/changelog/0.0.7/db.changelog-0.0.7.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-create-model.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-genre.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-platform.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-publisher.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-game.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-released-game.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-sale.xml"/>
 </databaseChangeLog>

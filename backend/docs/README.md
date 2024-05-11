@@ -11,7 +11,7 @@
 
    - Project: **maven** - наиболее часто используемый сборщик проектов на Java.
    - Language: **Java** - наиболее часто используемый ЯП для Spring Boot проектов.
-   - Spring Boot: **3.2.6** - последняя стабильная версия на данный момент.
+   - Spring Boot: **3.2.5** - последняя стабильная версия на данный момент.
    - Project Metadata - доп. информация о проекте.
    - Packaging: **Jar** - наиболее часто используемый способ пакетирования Java-приложений.
    - Java: **21** - последняя LTS-версия Java на данный момент.
@@ -49,7 +49,7 @@ import java.io.Serializable;
 @Getter                   // Добавляет геттеры всех аттрибутов класса
 @Setter                   // Добавляет сеттеры всех аттрибутов класса
 @NoArgsConstructor        // Добавляет пустой констурктор класса
-@Accessors(chain = true)  // Модифицирует сеттеры, делая this возвращаемым объектом сеттеров
+@Accessors(chain = true)  // Модифицирует сеттеры, делая this возвращаемым объектом
 @MappedSuperclass         // Помечает данный класс суперклассом для сущностей
 public abstract class BaseEntity implements Serializable {
 
@@ -112,7 +112,7 @@ import java.io.Serializable;
 @ToString
 @Builder
 @Entity
-public class Game extends BaseEntity implements Serializable {
+public class Game extends BaseEntity {
 
     @ManyToOne                     // Помечает связь с Publisher как n:1
     @JoinColumn(nullable = false)  // Помечает связь с Publisher как NOT NULL
@@ -167,4 +167,232 @@ public class Sale extends BaseEntity {
 
 ## Миграция данных
 
-WIP
+В качестве менеджера миграций был выбран Liquibase. Для того, чтобы загрузить в БД все данные при запуске приложения будем использовать именно его. Для этого нужно создать в ресурсах приложения Master Changelog:
+1. Перейти в директорию `./src/main/resources/db/changelog`.
+2. Создать файл `db.changlelog-master.xml`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <include file="/db/changelog/0.0.1/db.changelog-create-model.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-genre.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-platform.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-publisher.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-game.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-released-game.xml"/>
+    <include file="/db/changelog/0.0.1/db.changelog-insert-sale.xml"/>
+</databaseChangeLog>
+```
+
+В этом файле перечислены все миграции, необходимые для запуска приложения. Теперь нужно создать эти файлы миграции, перечисленные выше:
+1. Создать файл `/db/changelog/0.0.1/db.changelog-create-model.xml`:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="create_genre_table" author="<your name>">
+        <createTable tableName="genre">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="genre_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_platform_table" author="<your name>">
+        <createTable tableName="platform">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="platform_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_publisher_table" author="<your name>">
+        <createTable tableName="publisher">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="publisher_pk"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_game_table" author="<your name>">
+        <createTable tableName="game">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="game_pk"/>
+            </column>
+            <column name="publisher_id" type="bigint">
+                <constraints references="publisher(id)" foreignKeyName="game_publisher_fk" nullable="false"/>
+            </column>
+            <column name="genre_id" type="bigint">
+                <constraints references="genre(id)" foreignKeyName="game_genre_fk" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_released_game_table" author="<your name>">
+        <createTable tableName="released_game">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="released_game_pk"/>
+            </column>
+            <column name="game_id" type="bigint">
+                <constraints references="game(id)" foreignKeyName="released_game_game_fk" nullable="false"/>
+            </column>
+            <column name="platform_id" type="bigint">
+                <constraints references="platform(id)" foreignKeyName="released_game_platform_fk" nullable="false"/>
+            </column>
+            <column name="year" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_sale_table" author="<your name>">
+        <createTable tableName="sale">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="sale_pk"/>
+            </column>
+            <column name="released_game_id" type="bigint">
+                <constraints references="released_game(id)" foreignKeyName="sale_released_game_fk" nullable="false"/>
+            </column>
+            <column name="region" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_of_sales" type="float">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
+```
+2. Остальные файлы создать автоматически, например, с помощью следующего скрипта на Python:
+```python
+import csv
+
+
+def to_changelog(changeset: str) -> str:
+    return (f'<?xml version="1.0" encoding="UTF-8"?>'
+            f'<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"'
+            f' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"'
+            f' xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">'
+            f'{changeset}'
+            f'</databaseChangeLog>')
+
+
+def to_changeset(id_: str, author: str, changes: list[str]) -> str:
+    return (f'<changeSet id="{id_}" author="{author}">'
+            f'{"".join(changes)}'
+            f'</changeSet>')
+
+
+def to_genre_insert(name) -> str:
+    return f'<insert tableName="genre"><column name="name" value="{name}"/></insert>'
+
+
+def to_platform_insert(name) -> str:
+    return f'<insert tableName="platform"><column name="name" value="{name}"/></insert>'
+
+
+def to_publisher_insert(name) -> str:
+    return f'<insert tableName="publisher"><column name="name" value="{name}"/></insert>'
+
+
+def to_game_insert(publisher, genre, name, publishers: list, genres: list) -> str:
+    return (f'<insert tableName="game">'
+            f'<column name="publisher_id" value="{publishers.index(publisher) + 1}"/>'
+            f'<column name="genre_id" value="{genres.index(genre) + 1}"/>'
+            f'<column name="name" value="{name}"/>'
+            f'</insert>')
+
+
+def to_released_game_insert(publisher, genre, name, platform, year, games: list, platforms: list) -> str:
+    return (f'<insert tableName="released_game">'
+            f'<column name="game_id" value="{games.index((publisher, genre, name)) + 1}"/>'
+            f'<column name="platform_id" value="{platforms.index(platform) + 1}"/>'
+            f'<column name="year" value="{year}"/>'
+            f'</insert>')
+
+
+def to_sale_insert(publisher, genre, name, platform, year, na, eu, jp, other, global_, released_games: list) -> str:
+    released_game_id = released_games.index((publisher, genre, name, platform, year)) + 1
+    return (f'<insert tableName="sale">'
+            f'<column name="released_game_id" value="{released_game_id}"/>'
+            f'<column name="region" value="NA"/>'
+            f'<column name="number_of_sales" value="{na}"/>'
+            f'</insert>'
+            f'<insert tableName="sale">'
+            f'<column name="released_game_id" value="{released_game_id}"/>'
+            f'<column name="region" value="EU"/>'
+            f'<column name="number_of_sales" value="{eu}"/>'
+            f'</insert>'
+            f'<insert tableName="sale">'
+            f'<column name="released_game_id" value="{released_game_id}"/>'
+            f'<column name="region" value="JP"/>'
+            f'<column name="number_of_sales" value="{jp}"/>'
+            f'</insert>'
+            f'<insert tableName="sale">'
+            f'<column name="released_game_id" value="{released_game_id}"/>'
+            f'<column name="region" value="GLOBAL"/>'
+            f'<column name="number_of_sales" value="{global_}"/>'
+            f'</insert>'
+            f'<insert tableName="sale">'
+            f'<column name="released_game_id" value="{released_game_id}"/>'
+            f'<column name="region" value="OTHER"/>'
+            f'<column name="number_of_sales" value="{other}"/>'
+            f'</insert>')
+
+
+def get_data(path: str, delimiter=',', quotechar='"') -> list[tuple]:
+    with open(path, newline='') as csv_file:
+        reader = csv.reader(csv_file, delimiter=delimiter, quotechar=quotechar)
+        next(reader)
+        return list(set(tuple(d[1:]) for d in reader if 'N/A' not in d))
+
+
+def save_changelog(path: str, id_: str, author: str, changes: list[str]) -> None:
+    with open(path, 'w') as _:
+        pass
+    with open(path, 'a') as changelog_file:
+        changelog_file.write(to_changelog(to_changeset(id_, author, changes)))
+
+
+if __name__ == '__main__':
+    data = get_data('vgsales.csv', ',', '"')
+
+    genres = sorted(set(d[3] for d in data))
+    platforms = sorted(set(d[1] for d in data))
+    publishers = sorted(set(d[4] for d in data))
+    games = sorted(set((d[4], d[3], d[0]) for d in data), key=lambda d: d[2])
+    released_games = sorted(set((d[4], d[3], d[0], d[1], d[2]) for d in data), key=lambda d: d[2])
+    sales = sorted(set((d[4], d[3], d[0], d[1], d[2], d[5], d[6], d[7], d[8], d[9]) for d in data), key=lambda d: d[2])
+
+    genre_changes = [to_genre_insert(g) for g in genres]
+    platform_changes = [to_platform_insert(p) for p in platforms]
+    publisher_changes = [to_publisher_insert(p) for p in publishers]
+    game_changes = [to_game_insert(*g, publishers, genres) for g in games]
+    released_game_changes = [to_released_game_insert(*rg, games, platforms) for rg in released_games]
+    sale_changes = [to_sale_insert(*s, released_games) for s in sales]
+
+    save_changelog('db.changelog-insert-genre.xml', 'insert_genre_data', 'default', genre_changes)
+    save_changelog('db.changelog-insert-platform.xml', 'insert_platform_data', 'default', platform_changes)
+    save_changelog('db.changelog-insert-publisher.xml', 'insert_publisher_data', 'default', publisher_changes)
+    save_changelog('db.changelog-insert-game.xml', 'insert_game_data', 'default', game_changes)
+    save_changelog('db.changelog-insert-released-game.xml', 'insert_released_game_data', 'default', released_game_changes)
+    save_changelog('db.changelog-insert-sale.xml', 'insert_sale_data', 'default', sale_changes)
+```
+3. Сохранить полученные файлы в директорию `./src/main/resources/db/changelog/0.0.1`.
