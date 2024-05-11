@@ -396,3 +396,182 @@ if __name__ == '__main__':
     save_changelog('db.changelog-insert-sale.xml', 'insert_sale_data', 'default', sale_changes)
 ```
 3. Сохранить полученные файлы в директорию `./src/main/resources/db/changelog/0.0.1`.
+
+## Запросы в БД
+
+Необходимо сделать следующие запросы (с поддержкой сортировки и пагинации):
+1. получение названий всех жанров;
+2. получение названий всех игровых платформ;
+3. получение названий всех игровых издателей;
+4. получение всех годов, которые рассматриваются в выборке;
+5. получение таблицы продаж с поддержкой фильтрации по жанрам, игровым платформам, игровым издателям и годам;
+6. получение данных для графика продаж по жанрам, игровым платформам и игровым издателям с поддержкой фильтрации по жанрам, игровым платформам, игровым издателям и годам.
+
+Для реализации первых трех запросов необходимо лишь создать репозитории:
+1. Создать специальный пакет `repostiory`.
+2. Создать для каждой сущности репоизторий по аналогии:
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import ru.dvfu.entity.Genre;
+
+@Repository
+public interface GenreRepository extends JpaRepository<Genre, Long> {
+}
+```
+
+Для реализации четвертого запроса необходимо в `ReleasedGameRepository` создать следующий метод:
+```java
+@Query("SELECT DISTINCT rg.year " +
+        "FROM ReleasedGame rg " +
+        "WHERE rg.year IS NOT NULL")  // Вызываемый запрос к БД в виде специального языка JPQL
+Page<Integer> findDistinctYearsNotNull(Pageable pageable);
+```
+
+Для реализации пятого запроса необходимо в `SaleRepository` создать следующие метод:
+```java
+@Query("SELECT s " +
+        "FROM Sale s " +
+        "WHERE (:skipPublishersFilter = TRUE OR s.releasedGame.game.publisher.name IN :publishers) " +
+        "  AND (:skipPlatformsFilter = TRUE OR s.releasedGame.platform.name IN :platforms) " +
+        "  AND (:skipGenresFilter = TRUE OR s.releasedGame.game.genre.name IN :genres) " +
+        "  AND (:skipYearsFilter = TRUE OR s.releasedGame.year IN :years) " +
+        "  AND (:skipRegionsFilter = TRUE OR s.region IN :regions)")
+Page<Sale> findByPublishersAndPlatformsAndGenresAndYears(Boolean skipPublishersFilter,
+                                                         Boolean skipPlatformsFilter,
+                                                         Boolean skipGenresFilter,
+                                                         Boolean skipYearsFilter,
+                                                         Boolean skipRegionsFilter,
+                                                         Collection<String> publishers,
+                                                         Collection<String> platforms,
+                                                         Collection<String> genres,
+                                                         Collection<Integer> years,
+                                                         Collection<Region> regions,
+                                                         Pageable pageable);
+```
+
+Для реализации шестого запроса необходимо создать модель для хранения данных графика (желательно, в пакете `model`):
+```java
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+@Data  // Автоматически создает сеттеры, геттеры, сравнение и человеко-читаемый вывод
+@Builder
+@AllArgsConstructor
+@Accessors(chain = true)
+public class ChartData {
+
+    private Integer year;
+
+    private String groupBy;
+
+    private Double numberOfSales;
+
+}
+```
+
+После чего можно создавать следующие методы в `SaleRepository`:
+```java
+@Query("SELECT new ru.dvfu.videgames.model.ChartData( " +
+        "          s.releasedGame.year, " +
+        "          s.releasedGame.game.publisher.name, " +
+        "          CASE WHEN (:aggregator1 = 'SUM') THEN SUM(s.numberOfSales) " +
+        "               WHEN (:aggregator2 = 'MIN') THEN MIN(s.numberOfSales) " +
+        "               WHEN (:aggregator3 = 'MAX') THEN MAX(s.numberOfSales) " +
+        "               ELSE CAST(AVG(s.numberOfSales) AS DOUBLE) " +
+        "          END " +
+        "      ) " +
+        "FROM Sale s " +
+        "WHERE (:skipPublishersFilter = TRUE OR s.releasedGame.game.publisher.name IN :publishers) " +
+        "  AND (:skipPlatformsFilter = TRUE OR s.releasedGame.platform.name IN :platforms) " +
+        "  AND (:skipGenresFilter = TRUE OR s.releasedGame.game.genre.name IN :genres) " +
+        "  AND (:skipYearsFilter = TRUE OR s.releasedGame.year IN :years) " +
+        "  AND (:skipRegionsFilter = TRUE OR s.region IN :regions) " +
+        "GROUP BY s.releasedGame.year, s.releasedGame.game.publisher.name ")
+Page<ChartData> findByPublishersAndPlatformsAndGenresAndYearsGroupByPublisher(
+        String aggregator1, 
+        String aggregator2,
+        String aggregator3,
+        Boolean skipPublishersFilter,
+        Boolean skipPlatformsFilter,
+        Boolean skipGenresFilter,
+        Boolean skipYearsFilter,
+        Boolean skipRegionsFilter,
+        Collection<String> publishers,
+        Collection<String> platforms,
+        Collection<String> genres,
+        Collection<Integer> years,
+        Collection<Region> regions,
+        Pageable pageable
+);
+
+
+@Query("SELECT new ru.dvfu.videgames.model.ChartData( " +
+        "          s.releasedGame.year, " +
+        "          s.releasedGame.platform.name, " +
+        "          CASE WHEN (:aggregator1 = 'SUM') THEN SUM(s.numberOfSales) " +
+        "               WHEN (:aggregator2 = 'MIN') THEN MIN(s.numberOfSales) " +
+        "               WHEN (:aggregator3 = 'MAX') THEN MAX(s.numberOfSales) " +
+        "               ELSE CAST(AVG(s.numberOfSales) AS DOUBLE) " +
+        "          END " +
+        "      ) " +
+        "FROM Sale s " +
+        "WHERE (:skipPublishersFilter = TRUE OR s.releasedGame.game.publisher.name IN :publishers) " +
+        "  AND (:skipPlatformsFilter = TRUE OR s.releasedGame.platform.name IN :platforms) " +
+        "  AND (:skipGenresFilter = TRUE OR s.releasedGame.game.genre.name IN :genres) " +
+        "  AND (:skipYearsFilter = TRUE OR s.releasedGame.year IN :years) " +
+        "  AND (:skipRegionsFilter = TRUE OR s.region IN :regions) " +
+        "GROUP BY s.releasedGame.year, s.releasedGame.platform.name ")
+Page<ChartData> findByPublishersAndPlatformsAndGenresAndYearsGroupByPlatform(
+        String aggregator1,
+        String aggregator2,
+        String aggregator3,
+        Boolean skipPublishersFilter,
+        Boolean skipPlatformsFilter,
+        Boolean skipGenresFilter,
+        Boolean skipYearsFilter,
+        Boolean skipRegionsFilter,
+        Collection<String> publishers,
+        Collection<String> platforms,
+        Collection<String> genres,
+        Collection<Integer> years,
+        Collection<Region> regions,
+        Pageable pageable
+);
+
+@Query("SELECT new ru.dvfu.videgames.model.ChartData( " +
+        "          s.releasedGame.year, " +
+        "          s.releasedGame.game.genre.name, " +
+        "          CASE WHEN (:aggregator1 = 'SUM') THEN SUM(s.numberOfSales) " +
+        "               WHEN (:aggregator2 = 'MIN') THEN MIN(s.numberOfSales) " +
+        "               WHEN (:aggregator3 = 'MAX') THEN MAX(s.numberOfSales) " +
+        "               ELSE CAST(AVG(s.numberOfSales) AS DOUBLE) " +
+        "          END " +
+        "      ) " +
+        "FROM Sale s " +
+        "WHERE (:skipPublishersFilter = TRUE OR s.releasedGame.game.publisher.name IN :publishers) " +
+        "  AND (:skipPlatformsFilter = TRUE OR s.releasedGame.platform.name IN :platforms) " +
+        "  AND (:skipGenresFilter = TRUE OR s.releasedGame.game.genre.name IN :genres) " +
+        "  AND (:skipYearsFilter = TRUE OR s.releasedGame.year IN :years) " +
+        "  AND (:skipRegionsFilter = TRUE OR s.region IN :regions) " +
+        "GROUP BY s.releasedGame.year, s.releasedGame.game.genre.name ")
+Page<ChartData> findByPublishersAndPlatformsAndGenresAndYearsGroupByGenre(
+        String aggregator1,
+        String aggregator2,
+        String aggregator3,
+        Boolean skipPublishersFilter,
+        Boolean skipPlatformsFilter,
+        Boolean skipGenresFilter,
+        Boolean skipYearsFilter,
+        Boolean skipRegionsFilter,
+        Collection<String> publishers,
+        Collection<String> platforms,
+        Collection<String> genres,
+        Collection<Integer> years,
+        Collection<Region> regions,
+        Pageable pageable
+);
+```
