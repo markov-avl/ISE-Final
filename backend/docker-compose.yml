@@ -1,20 +1,6 @@
 version: '3.8'
 
 services:
-#  backend:
-#    image: videogames:${APP_VERSION}
-#    container_name: videogames
-#    restart: always
-#    ports:
-#      - "8080:8080"
-#    networks:
-#      - ise_network
-#    environment:
-#      PORT: 8080
-#      DB_URL: jdbc:postgresql://${DATABASE_NAME}:5432
-#      DB_NAME: ${DATABASE_NAME}
-#      DB_USER: ${DATABASE_USER}
-#      DB_PASS: ${DATABASE_PASSWORD}
   postgres:
     image: postgres:16.2-alpine
     container_name: ise-postgres
