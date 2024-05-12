@@ -485,7 +485,7 @@ public interface GenreRepository extends JpaRepository<Genre, Long> {
 Page<Integer> findDistinctYearsNotNull(Pageable pageable);
 ```
 
-Для реализации пятого запроса необходимо в `SaleRepository` создать следующие метод:
+Для реализации пятого запроса необходимо в `SaleRepository` создать следующий метод:
 
 ```java
 
@@ -513,8 +513,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-@Data
 // Автоматически создает сеттеры, геттеры, конструкторы, человеко-читаемый вывод и переопределяет методы equals и hashCode
+@Data
 @Builder
 @AllArgsConstructor
 @Accessors(chain = true)
@@ -615,7 +615,9 @@ Page<ChartData> findByPublishersAndPlatformsAndGenresAndYearsAndRegionsGroupByGe
 ## Services
 
 Теперь нужно написать слой бизнес-логики. Для этого создадим пакет `service` и проделаем следующие шаги:
+
 1. Создать `GenreService`:
+
 ```java
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -631,15 +633,17 @@ import ru.dvfu.videogames.repository.GenreRepository;
 public class GenreService {
 
     private final GenreRepository genreRepository;
-    
+
     public Page<Genre> getAll(Pageable page) {
         return genreRepository.findAll(page);
     }
 
 }
 ```
+
 2. Создать `PlatformService` и `PublisherService` по аналогии с `GenreService`.
 3. Создать `ReleasedGameService`:
+
 ```java
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -660,11 +664,11 @@ import java.util.Optional;
 public class ReleasedGameService {
 
     private final ReleasedGameRepository releasedGameRepository;
-    
+
     public Page<Integer> getYears(Pageable page) {
         return releasedGameRepository.findDistinctYearsNotNull(page);
     }
-    
+
     public Page<Region> getRegions(Pageable page) {
         Comparator<Region> comparator = Optional.ofNullable(page.getSort().getOrderFor("region"))
                 .map(Sort.Order::getDirection)
@@ -684,10 +688,14 @@ public class ReleasedGameService {
 
 }
 ```
+
 4. Создать перечисление `Aggregator` с экземплярами `SUM`, `MIN`, `MAX` и `MEAN`.
 5. Создать перечисление `GroupBy` с экземплярами `GENRE`, `PLATFORM` и `PUBLISHER`.
-6. Создать модель `Filter` с фильтрами `List<String> genre`, `List<String> platforms`, `List<String> publishers`, `List<Integer> years` и `List<Region> regions`.
+6. Создать модель `Filter` с
+   фильтрами `List<String> genre`, `List<String> platforms`, `List<String> publishers`, `List<Integer> years`
+   и `List<Region> regions`.
 7. Создать `SaleService`:
+
 ```java
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
@@ -706,11 +714,11 @@ import ru.dvfu.videogames.repository.SaleRepository;
 public class SaleService {
 
     private final SaleRepository saleRepository;
-    
+
     public Page<Sale> getAll(Pageable page) {
         return saleRepository.findAll(page);
     }
-    
+
     public Page<Sale> getAll(Pageable page, Filter filter) {
         return saleRepository.findByPublishersAndPlatformsAndGenresAndYearsAndRegions(
                 filter.getPublishers(),
@@ -721,7 +729,7 @@ public class SaleService {
                 page
         );
     }
-    
+
     public Page<ChartData> getChart(Pageable page, Filter filter, Aggregator aggregator, GroupBy groupBy) {
         if (groupBy.equals(GroupBy.PUBLISHER)) {
             return saleRepository.findByPublishersAndPlatformsAndGenresAndYearsAndRegionsGroupByPublisher(
@@ -860,6 +868,7 @@ public abstract PageDto<Integer> toYearsPageDto(Page<Integer> page);
 5. В `SaleMapper` необходимо переопределить метод `toDto` и добавить ещё несколько:
 
 ```java
+
 @Mapping(source = "releasedGame.id", target = "releasedGameId")
 public abstract SaleDto toDto(Sale entity);
 
@@ -880,3 +889,240 @@ public abstract PageDto<SaleExtendedDto> toExtendedPageDto(Page<Sale> page);
 @Mapping(target = "data", source = "content")
 public abstract PageDto<ChartDataDto> toChartDataPageDto(Page<ChartData> page);
 ```
+
+## Controllers
+
+В последнюю очередь нужно написать контроллеры, которые будут принимать и отдавать трафик (нам так будет казаться). Для
+этого стоит создать отдельный пакет `controller` и проделать в нем следующие шаги:
+
+1. Создать контроллер `GenreController`:
+
+```java
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ru.dvfu.videogames.dto.GenreDto;
+import ru.dvfu.videogames.dto.PageDto;
+import ru.dvfu.videogames.dto.PageParamsDto;
+import ru.dvfu.videogames.dto.SortParamsDto;
+import ru.dvfu.videogames.entity.Genre;
+import ru.dvfu.videogames.mapper.GenreMapper;
+import ru.dvfu.videogames.service.GenreService;
+
+@RequiredArgsConstructor
+// Помечает, что компонент является REST контроллером
+@RestController
+// Помечает, что точкой входа в контроллер будет URL <host>/genres
+@RequestMapping("/genres")
+public class GenreController {
+
+    private final GenreService genreService;
+
+    private final GenreMapper genreMapper;
+
+    // Помечает, что метод должен сработать на GET-запросе
+    @GetMapping
+    public ResponseEntity<PageDto<GenreDto>> getAll(PageParamsDto pageParamsDto, SortParamsDto sortParamsDto) {
+        PageRequest pageRequest = PageRequest.of(pageParamsDto.getPage(), pageParamsDto.getSize());
+        Sort sort = sortParamsDto.getSort().stream()
+                .map(sort -> sort.split("-"))
+                .map(split -> Sort.by(Sort.Direction.fromString(split[0]), split[1]))
+                .reduce(Sort::and)
+                .orElse(Sort.unsorted());
+
+        Page<Genre> genres = genreService.getAll(pageRequest.withSort(sort));
+        PageDto<GenreDto> genresDto = genreMapper.toPageDto(genres);
+
+        return ResponseEntity.ok(genresDto);
+    }
+
+}
+```
+
+2. Создать контроллер `PlatformController` и `PublisherController` по аналогии с `GenreController`.
+3. Создать контроллер `ReleasedGameController`:
+
+```java
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import ru.dvfu.videogames.dto.PageDto;
+import ru.dvfu.videogames.dto.PageParamsDto;
+import ru.dvfu.videogames.enumeration.Region;
+import ru.dvfu.videogames.mapper.ReleasedGameMapper;
+import ru.dvfu.videogames.service.ReleasedGameService;
+
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("/released-games")
+public class ReleasedGameController {
+
+    private final ReleasedGameService releasedGameService;
+
+    private final ReleasedGameMapper releasedGameMapper;
+
+    // Помечает, что метод должен сработать на GET-запросе, если дополнительно будет прописан путь /years
+    @GetMapping("/years")
+    public ResponseEntity<PageDto<Integer>> getYears(
+            PageParamsDto pageParamsDto,
+            // Аргумент возьмется из соответствующего параметра запроса (?sortDirection=...), если он есть, иначе null
+            @RequestParam(required = false) Sort.Direction sortDirection
+    ) {
+        PageRequest pageRequest = PageRequest.of(pageParamsDto.getPage(), pageParamsDto.getSize());
+        Sort sort = sortDirection != null ? Sort.by(sortDirection, "year") : Sort.unsorted();
+
+        Page<Integer> years = releasedGameService.getYears(pageRequest.withSort(sort));
+        PageDto<Integer> yearsDto = releasedGameMapper.toYearsPageDto(years);
+
+        return ResponseEntity.ok(yearsDto);
+    }
+
+    // Помечает, что метод должен сработать на GET-запросе, если дополнительно будет прописан путь /regions
+    @GetMapping("/regions")
+    public ResponseEntity<PageDto<String>> getRegions(
+            PageParamsDto pageParamsDto,
+            // Аргумент возьмется из соответствующего параметра запроса (?sortDirection=...), если он есть, иначе null
+            @RequestParam(required = false) Sort.Direction sortDirection
+    ) {
+        PageRequest pageRequest = PageUtil.request(pageParamsDto);
+        Sort sort = sortDirection != null ? Sort.by(sortDirection, "region") : Sort.unsorted();
+
+        Page<Region> regions = releasedGameService.getRegions(pageRequest.withSort(sort));
+        PageDto<String> regionsDto = releasedGameMapper.toRegionsPageDto(regions);
+
+        return ResponseEntity.ok(regionsDto);
+    }
+
+}
+```
+
+4. Создать контроллер `SaleController`:
+
+```java
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import ru.dvfu.videogames.model.Filter;
+import ru.dvfu.videogames.dto.ChartDataDto;
+import ru.dvfu.videogames.dto.PageDto;
+import ru.dvfu.videogames.dto.SaleDto;
+import ru.dvfu.videogames.dto.SaleExtendedDto;
+import ru.dvfu.videogames.dto.FilterParamsDto;
+import ru.dvfu.videogames.dto.SortParamsDto;
+import ru.dvfu.videogames.dto.PageParamsDto;
+import ru.dvfu.videogames.entity.Sale;
+import ru.dvfu.videogames.enumeration.Aggregator;
+import ru.dvfu.videogames.enumeration.GroupBy;
+import ru.dvfu.videogames.mapper.SaleMapper;
+import ru.dvfu.videogames.model.ChartData;
+import ru.dvfu.videogames.model.Filter;
+import ru.dvfu.videogames.service.SaleService;
+
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("/sales")
+public class SaleController {
+
+    private final SaleService saleService;
+
+    private final SaleMapper saleMapper;
+
+    @GetMapping
+    public ResponseEntity<PageDto<SaleDto>> getAll(PageParamsDto pageParamsDto, SortParamsDto sortParamsDto) {
+        PageRequest pageRequest = PageRequest.of(pageParamsDto.getPage(), pageParamsDto.getSize());
+        Sort sort = sortParamsDto.getSort().stream()
+                .map(sort -> sort.split("-"))
+                .map(split -> Sort.by(Sort.Direction.fromString(split[0]), split[1]))
+                .reduce(Sort::and)
+                .orElse(Sort.unsorted());
+
+        Page<Sale> sales = saleService.getAll(pageRequest.withSort(sort));
+        PageDto<SaleDto> salesDto = saleMapper.toPageDto(sales);
+
+        return ResponseEntity.ok(salesDto);
+    }
+
+    @GetMapping("/extended")
+    public ResponseEntity<PageDto<SaleExtendedDto>> getExtendedAll(
+            PageParamsDto pageParamsDto,
+            FilterParamsDto filterParamsDto,
+            SortParamsDto sortParamsDto
+    ) {
+        PageRequest pageRequest = PageRequest.of(pageParamsDto.getPage(), pageParamsDto.getSize());
+        Filter filter = Filter.of(
+                filterParamsDto.getGenres(),
+                filterParamsDto.getPlatforms(),
+                filterParamsDto.getPublishers(),
+                filterParamsDto.getYears(),
+                filterParamsDto.getRegions()
+        );
+        Sort sort = sortParamsDto.getSort().stream()
+                .map(sort -> sort.split("-"))
+                .map(split -> Sort.by(Sort.Direction.fromString(split[0]), split[1]))
+                .reduce(Sort::and)
+                .orElse(Sort.unsorted());
+
+        Page<Sale> sales = saleService.getAll(pageRequest.withSort(sort), filter);
+        PageDto<SaleExtendedDto> salesDto = saleMapper.toExtendedPageDto(sales);
+
+        return ResponseEntity.ok(salesDto);
+    }
+
+    @GetMapping("/chart/{groupBy}")
+    public ResponseEntity<PageDto<ChartDataDto>> getChart(
+            // Аргумент возьмется из пути на месте groupBy
+            @PathVariable GroupBy groupBy,
+            PageParamsDto pageParamsDto,
+            FilterParamsDto filterParamsDto,
+            SortParamsDto sortParamsDto,
+            // Аргумент возьмется из соответствующего параметра запроса (?aggregator=...), если он есть, иначе Aggregator.SUM
+            @RequestParam(required = false, defaultValue = "SUM") Aggregator aggregator
+    ) {
+        PageRequest pageRequest = PageRequest.of(pageParamsDto.getPage(), pageParamsDto.getSize());
+        Filter filter = Filter.of(
+                filterParamsDto.getGenres(),
+                filterParamsDto.getPlatforms(),
+                filterParamsDto.getPublishers(),
+                filterParamsDto.getYears(),
+                filterParamsDto.getRegions()
+        );
+        Sort sort = sortParamsDto.getSort().stream()
+                .map(sort -> sort.split("-"))
+                .map(split -> Sort.by(Sort.Direction.fromString(split[0]), split[1]))
+                .reduce(Sort::and)
+                .orElse(Sort.unsorted());
+
+        Page<ChartData> chartData = saleService.getChart(pageRequest.withSort(sort), filter, aggregator, groupBy);
+        PageDto<ChartDataDto> chartDataDto = saleMapper.toChartDataPageDto(chartData);
+
+        return ResponseEntity.ok(chartDataDto);
+    }
+
+}
+```
+
+## Результат
+
+Если перейти на страницу <host>/swagger-ui/index.html, то должна сгенерироваться следующая страница с документацией:
+
+![swagger.png](swagger.png)
+
+Отсюда легко можно убедиться в работоспособности эндпоинтов и в целом посмотреть API приложения.
