@@ -16,10 +16,9 @@ import ru.dvfu.dto.ChartDataDto;
 import ru.dvfu.dto.PageDto;
 import ru.dvfu.dto.SaleDto;
 import ru.dvfu.dto.SaleExtendedDto;
-import ru.dvfu.dto.params.MultiFilterParamsDto;
-import ru.dvfu.dto.params.MultiSortParamsDto;
-import ru.dvfu.dto.params.PageParamsDto;
+import ru.dvfu.dto.params.FilterParamsDto;
 import ru.dvfu.dto.params.SortParamsDto;
+import ru.dvfu.dto.params.PageParamsDto;
 import ru.dvfu.entity.Sale;
 import ru.dvfu.enumeration.Aggregator;
 import ru.dvfu.enumeration.GroupBy;
@@ -58,12 +57,12 @@ public class SaleController {
     @GetMapping("/extended")
     public ResponseEntity<PageDto<SaleExtendedDto>> getExtendedAll(
             @Valid PageParamsDto pageParamsDto,
-            @Valid MultiFilterParamsDto multiFilterParamsDto,
-            @Valid MultiSortParamsDto multiSortParamsDto
+            @Valid FilterParamsDto filterParamsDto,
+            @Valid SortParamsDto sortParamsDto
     ) {
         PageRequest pageRequest = PageUtil.request(pageParamsDto);
-        Filter filter = FilterUtil.request(multiFilterParamsDto);
-        Sort sort = SortUtil.request(multiSortParamsDto);
+        Filter filter = FilterUtil.request(filterParamsDto);
+        Sort sort = SortUtil.request(sortParamsDto);
 
         Page<Sale> sales = saleService.getAll(pageRequest.withSort(sort), filter);
         PageDto<SaleExtendedDto> salesDto = saleMapper.toExtendedPageDto(sales);
@@ -75,13 +74,13 @@ public class SaleController {
     public ResponseEntity<PageDto<ChartDataDto>> getChart(
             @PathVariable GroupBy groupBy,
             @Valid PageParamsDto pageParamsDto,
-            @Valid MultiFilterParamsDto multiFilterParamsDto,
-            @Valid MultiSortParamsDto multiSortParamsDto,
+            @Valid FilterParamsDto filterParamsDto,
+            @Valid SortParamsDto sortParamsDto,
             @RequestParam(required = false, defaultValue = "SUM") Aggregator aggregator
     ) {
         PageRequest pageRequest = PageUtil.request(pageParamsDto);
-        Filter filter = FilterUtil.request(multiFilterParamsDto);
-        Sort sort = SortUtil.request(multiSortParamsDto);
+        Filter filter = FilterUtil.request(filterParamsDto);
+        Sort sort = SortUtil.request(sortParamsDto);
 
         Page<ChartData> chartData = saleService.getChart(pageRequest.withSort(sort), filter, aggregator, groupBy);
         PageDto<ChartDataDto> chartDataDto = saleMapper.toChartDataPageDto(chartData);

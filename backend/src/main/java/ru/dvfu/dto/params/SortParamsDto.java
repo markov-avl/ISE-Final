@@ -5,20 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Sort;
-import ru.dvfu.util.SortUtil;
+
+import java.util.Collections;
+import java.util.List;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(description = "Сортировка")
+@Schema(description = "Многоуровневая сортировка")
 public class SortParamsDto {
 
-    @Schema(description = "Направление сортировки", example = "ASC", nullable = true)
-    private Sort.Direction sortDirection = SortUtil.DEFAULT_DIRECTION;
-
-    @Schema(description = "Поле, по которому сортируются данные", example = SortUtil.DEFAULT_SORT_BY, nullable = true)
-    private String sortBy = SortUtil.DEFAULT_SORT_BY;
+    @Schema(description = "Направление сортировки и поле", example = "asc-genre,desc-publisher", nullable = true)
+    private List<String> sort = Collections.emptyList();
 
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(description = "Фильтрация по определенным полям")
-public class MultiFilterParamsDto {
+public class FilterParamsDto {
 
     @Schema(description = "Фильтры по игровому издателю", example = "Nintendo,Activision", nullable = true)
     private List<String> publishers = FilterUtil.DEFAULT_VALUES;

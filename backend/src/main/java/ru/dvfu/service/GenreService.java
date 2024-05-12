@@ -3,36 +3,32 @@ package ru.dvfu.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.stereotype.Service;
 import ru.dvfu.entity.Genre;
-import ru.dvfu.exception.FailedToSortException;
 import ru.dvfu.repository.GenreRepository;
+import ru.dvfu.util.SortUtil;
 
-import java.util.Optional;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class GenreService {
 
+    private static final Map<String, String> SORT_MAPPINGS = Map.of(
+            "id", "id",
+            "name", "name"
+    );
+
     private final GenreRepository genreRepository;
 
-    public Genre getById(Long id) {
-        return findById(id).orElseThrow();
-    }
+    @Cacheable("genres")
+    public Page<Genre> getAll(PageRequest page) {
+        Pageable pageable = SortUtil.correctSorting(page, SORT_MAPPINGS, List.of("id", "name"));
 
-    public Optional<Genre> findById(Long id) {
-        return genreRepository.findById(id);
-    }
-
-    @Cacheable
-    public Page<Genre> getAll(Pageable page) {
-        try {
-            return genreRepository.findAll(page);
-        } catch (PropertyReferenceException exception) {
-            throw new FailedToSortException(exception);
-        }
+        return genreRepository.findAll(pageable);
     }
 
 }

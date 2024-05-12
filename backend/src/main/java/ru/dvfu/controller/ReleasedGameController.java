@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dvfu.dto.PageDto;
 import ru.dvfu.dto.params.PageParamsDto;
+import ru.dvfu.enumeration.Region;
 import ru.dvfu.mapper.ReleasedGameMapper;
 import ru.dvfu.service.ReleasedGameService;
 import ru.dvfu.util.PageUtil;
@@ -40,6 +41,20 @@ public class ReleasedGameController {
         PageDto<Integer> yearsDto = releasedGameMapper.toYearsPageDto(years);
 
         return ResponseEntity.ok(yearsDto);
+    }
+
+    @GetMapping("/regions")
+    public ResponseEntity<PageDto<String>> getRegions(
+            @Valid PageParamsDto pageParamsDto,
+            @RequestParam(required = false) Sort.Direction sortDirection
+    ) {
+        PageRequest pageRequest = PageUtil.request(pageParamsDto);
+        Sort sort = SortUtil.request(sortDirection, "region");
+
+        Page<Region> regions = releasedGameService.getRegions(pageRequest.withSort(sort));
+        PageDto<String> regionsDto = releasedGameMapper.toRegionsPageDto(regions);
+
+        return ResponseEntity.ok(regionsDto);
     }
 
 }
