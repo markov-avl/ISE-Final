@@ -10,7 +10,7 @@ interface ChartProps {
 const Chart = ({ data = [], showOnChart, aggregator }: ChartProps) => {
 	const d3Container = useRef<SVGSVGElement>(null)
 	const width = 1500
-	const height = 1000
+	const height = 500
 	const marginTop = 20
 	const marginRight = 20
 	const marginBottom = 30
@@ -19,23 +19,17 @@ const Chart = ({ data = [], showOnChart, aggregator }: ChartProps) => {
 
 	useEffect(() => {
 		if (d3Container.current) {
-			let resData = data.map(({ year, numberOfSales, groupBy }) => ({
-				axesXItem: year,
-				axesYItem: groupBy,
-				viewData: numberOfSales
-			}))
-
 			const svg = d3.select(d3Container.current)
 
 			const xScale = d3
 				.scaleBand()
-				.domain(d3.group(resData, d => d.axesXItem).keys())
+				.domain(d3.group(data, d => d.year).keys())
 				.range([marginLeft, width - marginRight])
 				.padding(1)
 
 			const yScale = d3
 				.scaleLinear()
-				.domain(d3.extent(resData, d => d.viewData))
+				.domain(d3.extent(data, d => d.numberOfSales))
 				.range([height - marginBottom, marginTop])
 
 			// отрисованная ось x
@@ -128,10 +122,10 @@ const Chart = ({ data = [], showOnChart, aggregator }: ChartProps) => {
 					.attr('stroke-opacity', 0.1)
 			}
 
-			const points = resData.map(d => [
-				xScale(d.axesXItem),
-				yScale(d.viewData),
-				d.axesYItem
+			const points = data.map(d => [
+				xScale(d.year),
+				yScale(d.numberOfSales),
+				d.groupBy
 			])
 			const groups = d3.rollup(
 				points,
@@ -187,7 +181,7 @@ const Chart = ({ data = [], showOnChart, aggregator }: ChartProps) => {
 					.raise()
 				dot.attr('transform', `translate(${x},${y})`)
 				dot.select('text').text(k)
-				svg.property('value', resData[i]).dispatch('input', { bubbles: true })
+				svg.property('value', data[i]).dispatch('input', { bubbles: true })
 			}
 
 			function pointerEntered() {

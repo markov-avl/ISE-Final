@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import Filters from '@/shared/Filters/Filters'
 import { DataCustomNameByField } from '@/types/DataCustomNameByField'
-import { FilterObject } from '@/components/VideoGamesTable/VideoGames'
+import { FilterObject } from '@/components/VideoGamesView/VideoGamesView'
 import { get } from '@/api/baseApi'
 
 interface VideoGamesFiltersProps {

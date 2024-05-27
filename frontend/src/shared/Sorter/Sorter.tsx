@@ -5,8 +5,8 @@ interface SorterProps<Type, Key extends keyof Type> {
 	name: string
 	onMoveUp: () => void
 	onMoveDown: () => void
-	sorting: 'asc' | 'desc' | 'ns'
-	onClick: (index: number, newSorting: 'asc' | 'desc' | 'ns') => void
+	sorting: 'asc' | 'desc'
+	onClick: (index: number, newSorting: 'asc' | 'desc') => void
 	index: number
 }
 
@@ -52,15 +52,6 @@ const Sorter = <Type, Key extends keyof Type>({
 				checked={sorting === 'desc'}
 				onClick={setChecked}
 			/>
-			{/*<label htmlFor={(keyName as string) + 'Ns'}>Не сортировать</label>*/}
-			{/*<input*/}
-			{/*	id={(keyName as string) + 'Ns'}*/}
-			{/*	type='radio'*/}
-			{/*	value='ns'*/}
-			{/*	name={(keyName as string) + 'Ns'}*/}
-			{/*	checked={sorting === 'ns'}*/}
-			{/*	onClick={setChecked}*/}
-			{/*/>*/}
 		</div>
 	)
 }

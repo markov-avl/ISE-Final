@@ -10,7 +10,7 @@ export type FilterObject<Type> = {
 	[key in keyof Type]?: string[]
 }
 
-const VideoGames = () => {
+const VideoGamesView = () => {
 	const [displayedData, setDisplayedData] = useState<Game[]>()
 	const [sorters, setSorters] = useState<ISorters<Game, keyof Game>[]>([
 		{
@@ -60,38 +60,36 @@ const VideoGames = () => {
 			new URLSearchParams({ ...query, size: 200000 }).toString() +
 			'&aggregator=' +
 			aggregator
-		).then(data => {
-			setDisplayedData(data.data)
-		)
-		}, [query, aggregator, showOnChart])
+		).then(data => setDisplayedData(data.data))
+	}, [query, aggregator, showOnChart])
 
-		return (
-			<>
-				<div style={{ display: 'flex' }}>
-					<VideoGamesFilters setQuery={setQuery} />
-					<Sorters sorters={sorters} setSorters={setSorters} />
-					<ChartSelectors
-						onClickShowOnChart={e => {
-							setShowOnChart(e.target.value)
-						}}
-						onClickAggregation={e => {
-							setAggregator(e.target.value)
-						}}
-					/>
-				</div>
-				<Chart
-					data={displayedData}
-					showOnChart={showOnChart}
-					aggregator={aggregator}
+	return (
+		<>
+			<div style={{ display: 'flex' }}>
+				<VideoGamesFilters setQuery={setQuery} />
+				<Sorters sorters={sorters} setSorters={setSorters} />
+				<ChartSelectors
+					onClickShowOnChart={e => {
+						setShowOnChart(e.target.value)
+					}}
+					onClickAggregation={e => {
+						setAggregator(e.target.value)
+					}}
 				/>
-				<VideoGamesPaginationTable
-					setCurrentPage={(p: number) =>
-						setQuery(prevQuery => ({ ...prevQuery, page: prevQuery.page + p }))
-					}
-					query={query}
-				/>
-			</>
-		)
-	}
+			</div>
+			<Chart
+				data={displayedData}
+				showOnChart={showOnChart}
+				aggregator={aggregator}
+			/>
+			<VideoGamesPaginationTable
+				setCurrentPage={(p: number) =>
+					setQuery(prevQuery => ({ ...prevQuery, page: prevQuery.page + p }))
+				}
+				query={query}
+			/>
+		</>
+	)
+}
 
-	export default VideoGames
+export default VideoGamesView

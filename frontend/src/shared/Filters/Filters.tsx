@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import Filter from '@/shared/Filter/Filter'
 import { DataCustomNameByField } from '@/types/DataCustomNameByField'
-import { FilterObject } from '@/components/VideoGamesTable/VideoGames'
+import { FilterObject } from '@/components/VideoGamesView/VideoGamesView'
 
 interface FiltersProps<Type, Key extends keyof Type> {
 	selectedFilters: FilterObject<Type>
@@ -18,7 +18,6 @@ const Filters = <Type, Key extends keyof Type>({
 		<>
 			{filters.map(({ name, key, data }) => (
 				<Filter
-					key={key as string}
 					title={name}
 					data={data}
 					onChangeHandler={e => {

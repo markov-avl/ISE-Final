@@ -1,12 +1,12 @@
 'use client'
 
-import VideoGames from '@/components/VideoGamesTable/VideoGames'
+import VideoGamesView from '@/components/VideoGamesView/VideoGamesView'
 import './main.css'
 
 export default function Home() {
 	return (
 		<main>
-			<VideoGames />
+			<VideoGamesView />
 		</main>
 	)
 }

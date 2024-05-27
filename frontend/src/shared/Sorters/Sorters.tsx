@@ -4,7 +4,7 @@ import Sorter from '@/shared/Sorter/Sorter'
 
 export interface ISorters<Type, Key extends keyof Type>
 	extends DataCustomNameByField<Type, Key> {
-	sorting: 'asc' | 'desc' | 'ns'
+	sorting: 'asc' | 'desc'
 }
 
 export interface SortersProps<Type, Key extends keyof Type> {
@@ -34,7 +34,7 @@ const Sorters = <Type, Key extends keyof Type>({
 		}
 	}
 
-	const editItem = (index: number, newSorting: 'asc' | 'desc' | 'ns') => {
+	const editItem = (index: number, newSorting: 'asc' | 'desc') => {
 		const newItems = [...sorters]
 		newItems[index].sorting = newSorting
 		setSorters(newItems)
