@@ -42,6 +42,22 @@
 6. Открыть свою среду разработки (например, IntelliJ IDEA).
 7. Импортировать проект в эту среду разработки.
 
+## Структура
+
+Будем следовать паттерну MVC:
+
+В целом структура backend-приложения будет выглядеть следующим образом:
+
+![scheme](scheme.png)
+
+- **Красным** цветом выделены компоненты, входящие в Model
+- **Желтым** цветом выделены компоненты, входящие во View
+- **Зеленым** цветом выделены компоненты, входящие в Controller
+
+Жирным контуром выделены компоненты, которые нужно реализовать самостоятельно, остальные - уже реализованы фреймворком.
+
+Между `Dispatcher Servlet` и контроллерами взаимодействие будет проходить с использованием DTO. Между контроллерами и сервисами взаимодействие будет проходить с использованием моделей и сущностей. Между сервисами и репозиториями взаимодействие проходит только с использованием сущностей.
+
 ## Entities
 
 Нужно перенести модель БД в приложение, сделать это можно следующим образом:
@@ -1020,7 +1036,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.dvfu.videogames.model.Filter;
 import ru.dvfu.videogames.dto.ChartDataDto;
 import ru.dvfu.videogames.dto.PageDto;
 import ru.dvfu.videogames.dto.SaleDto;
