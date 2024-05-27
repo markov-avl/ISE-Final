@@ -1,4 +1,4 @@
-# Video games [Backend]
+# Video games [Frontend]
 
 ## Создание проекта
 
