@@ -22,7 +22,7 @@ const ChartSelectors = ({
 				<option value='sum'>Сумма</option>
 				<option value='min'>Минимум</option>
 				<option value='max'>Максимум</option>
-				<option value='mean'>Среднее</option>
+				<option value='avg'>Среднее</option>
 			</select>
 		</div>
 	)

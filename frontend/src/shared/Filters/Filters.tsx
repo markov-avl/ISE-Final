@@ -1,28 +1,26 @@
 import React, { ReactNode } from 'react'
 import Filter from '@/shared/Filter/Filter'
 import { DataCustomNameByField } from '@/types/DataCustomNameByField'
-import { FilterObject } from '@/components/VideoGamesTable/VideoGamesTable'
+import { FilterObject } from '@/components/VideoGamesTable/VideoGames'
 
 interface FiltersProps<Type, Key extends keyof Type> {
-	data: Type[]
 	selectedFilters: FilterObject<Type>
 	filters: DataCustomNameByField<Type, Key>[]
 	setSelectedFilters: (filter: FilterObject<Type>) => void
 }
 
 const Filters = <Type, Key extends keyof Type>({
-	data,
 	selectedFilters,
 	filters,
 	setSelectedFilters
 }: FiltersProps<Type, Key>): ReactNode => {
 	return (
 		<>
-			{filters.map(f => (
+			{filters.map(({ name, key, data }) => (
 				<Filter
-					key={f.key as string}
-					title={f.name}
-					data={Array.from(new Set(data.map(d => d[f.key]))).sort()}
+					key={key as string}
+					title={name}
+					data={data}
 					onChangeHandler={e => {
 						const selectedValues: string[] = []
 						for (const option of e.currentTarget.selectedOptions) {
@@ -30,7 +28,7 @@ const Filters = <Type, Key extends keyof Type>({
 						}
 						const newState = {
 							...selectedFilters,
-							[f.key]: selectedValues
+							[key]: selectedValues
 						}
 						setSelectedFilters(newState)
 					}}

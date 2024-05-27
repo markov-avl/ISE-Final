@@ -7,9 +7,8 @@ interface ChartProps {
 	aggregator: string
 }
 
-const Chart = ({ data, showOnChart, aggregator }: ChartProps) => {
+const Chart = ({ data = [], showOnChart, aggregator }: ChartProps) => {
 	const d3Container = useRef<SVGSVGElement>(null)
-
 	const width = 1500
 	const height = 1000
 	const marginTop = 20
@@ -20,21 +19,11 @@ const Chart = ({ data, showOnChart, aggregator }: ChartProps) => {
 
 	useEffect(() => {
 		if (d3Container.current) {
-			let resData = []
-
-			const groupX = d3.group(data, d => d.year)
-			const axesXData = groupX.keys()
-			for (const axesXItem of axesXData) {
-				const groupY = d3.group(groupX.get(axesXItem), d => d[showOnChart])
-				const axesYData = groupY.keys()
-				for (const axesYItem of axesYData) {
-					const viewData = d3[aggregator](
-						groupY.get(axesYItem),
-						d => d.globalSales
-					)
-					resData.push({ axesXItem, axesYItem, viewData })
-				}
-			}
+			let resData = data.map(({ year, numberOfSales, groupBy }) => ({
+				axesXItem: year,
+				axesYItem: groupBy,
+				viewData: numberOfSales
+			}))
 
 			const svg = d3.select(d3Container.current)
 

@@ -52,15 +52,15 @@ const Sorter = <Type, Key extends keyof Type>({
 				checked={sorting === 'desc'}
 				onClick={setChecked}
 			/>
-			<label htmlFor={(keyName as string) + 'Ns'}>Не сортировать</label>
-			<input
-				id={(keyName as string) + 'Ns'}
-				type='radio'
-				value='ns'
-				name={(keyName as string) + 'Ns'}
-				checked={sorting === 'ns'}
-				onClick={setChecked}
-			/>
+			{/*<label htmlFor={(keyName as string) + 'Ns'}>Не сортировать</label>*/}
+			{/*<input*/}
+			{/*	id={(keyName as string) + 'Ns'}*/}
+			{/*	type='radio'*/}
+			{/*	value='ns'*/}
+			{/*	name={(keyName as string) + 'Ns'}*/}
+			{/*	checked={sorting === 'ns'}*/}
+			{/*	onClick={setChecked}*/}
+			{/*/>*/}
 		</div>
 	)
 }
